@@ -499,7 +499,7 @@
         
         <div class="cart-icon">
             <i class="fas fa-shopping-cart"></i>
-            <span class="cart-count">3</span>
+            <span class="cart-count"></span>
         </div>
     </div>
 </header>
@@ -725,6 +725,16 @@ const products = [
     }
 ];
 
+function updateCartCount() {
+    const count = document.querySelector('.cart-count');
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let totalQuantity = 0;
+    cart.forEach(item => {
+        totalQuantity += item.quantity;
+    });
+    count.textContent = totalQuantity > 0 ? totalQuantity : '';
+}
+
 // Simple cart functionality
 document.querySelectorAll('.add-to-cart').forEach((button, index) => {
     button.addEventListener('click', function() {
@@ -749,7 +759,14 @@ document.querySelectorAll('.add-to-cart').forEach((button, index) => {
         setTimeout(() => {
             this.style.backgroundColor = 'var(--accent)';
         }, 500);
+
+        updateCartCount();
     });
+});
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
 });
 
 // Redirect to product details page when a product image is clicked
