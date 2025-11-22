@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+<html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>LuxeScents & Time | Premium Fragrances & Watches</title> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"> <style> :root { --primary: #3a0ca3; --secondary: #7209b7; --accent: #f72585; --light: #f8f9fa; --dark: #212529; --success: #4cc9f0; }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    body {
+        background-color: #fcfcfc;
+        color: var(--dark);
+        overflow-x: hidden;
+    }
+    
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    /* Header & Navigation */
+    header {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo {
+        font-family: 'Playfair Display', serif;
+        font-size: 28px;
+        color: white;
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo span {
+        color: var(--accent);
+    }
+    
+    .logo i {
+        margin-right: 10px;
+        font-size: 32px;
+    }
+    
+    nav ul {
+        display: flex;
+        list-style: none;
+    }
+    
+    nav ul li {
+        margin-left: 25px;
+    }
+    
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        padding: 5px 10px;
+        border-radius: 4px;
+    }
+    
+    nav ul li a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .cart-icon {
+        position: relative;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+    }
+    
+    .cart-count {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background-color: var(--accent);
+        color: white;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    
+    /* Hero Section */
+    .hero {
+        height: 80vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1595425970377-2f8ded5e829a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80') no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        color: white;
+        text-align: center;
+    }
+    
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .hero h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #e0e0e0;
+    }
+    
+    .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: var(--accent);
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid var(--accent);
+    }
+    
+    .btn:hover {
+        background-color: transparent;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Products Section */
+    .products {
+        padding: 80px 0;
+    }
+    
+    .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    
+    .section-title h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 15px;
+    }
+    
+    .section-title p {
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .product-categories {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+    
+    .category-btn {
+        padding: 10px 25px;
+        margin: 0 10px;
+        background-color: #f0f0f0;
+        border: none;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .category-btn.active, .category-btn:hover {
+        background-color: var(--primary);
+        color: white;
+    }
+    
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+    }
+    
+    .product-card {
+        background-color: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        transform-style: preserve-3d;
+    }
+    
+    .product-card:hover {
+        transform: translateY(-10px) rotateY(5deg);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .product-image {
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .product-card:hover .product-image img {
+        transform: scale(1.1);
+    }
+    
+    .product-info {
+        padding: 20px;
+    }
+    
+    .product-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .product-info p {
+        color: #666;
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+    }
+    
+    .product-price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .price {
+        font-weight: bold;
+        color: var(--primary);
+        font-size: 1.2rem;
+    }
+    
+    .add-to-cart {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--accent);
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .add-to-cart:hover {
+        transform: rotate(180deg) scale(1.1);
+    }
+    
+    /* 3D Showcase */
+    .showcase {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    }
+    
+    .showcase-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .showcase-content {
+        width: 45%;
+    }
+    
+    .showcase-content h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+    }
+    
+    .showcase-content p {
+        margin-bottom: 30px;
+        color: #666;
+        line-height: 1.6;
+    }
+    
+    .showcase-image {
+        width: 45%;
+        position: relative;
+        perspective: 1000px;
+    }
+    
+    .showcase-product {
+        width: 100%;
+        height: 350px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.5s ease;
+        transform: rotateY(20deg) rotateX(10deg);
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0% { transform: rotateY(20deg) rotateX(10deg) translateY(0); }
+        50% { transform: rotateY(25deg) rotateX(5deg) translateY(-15px); }
+        100% { transform: rotateY(20deg) rotateX(10deg) translateY(0); }
+    }
+    
+    .showcase-product img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+    
+    /* Features */
+    .features {
+        padding: 80px 0;
+        background-color: white;
+    }
+    
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+    
+    .feature {
+        text-align: center;
+        padding: 30px;
+        border-radius: 15px;
+        background-color: #f8f9fa;
+        transition: all 0.3s ease;
+        transform: translateZ(0);
+    }
+    
+    .feature:hover {
+        transform: translateY(-10px) translateZ(10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature i {
+        font-size: 40px;
+        color: var(--primary);
+        margin-bottom: 20px;
+    }
+    
+    .feature h3 {
+        margin-bottom: 15px;
+    }
+    
+    .feature p {
+        color: #666;
+    }
+    
+    /* Footer */
+    footer {
+        background-color: var(--dark);
+        color: white;
+        padding: 60px 0 30px;
+    }
+    
+    .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+    }
+    
+    .footer-col h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+    
+    .footer-col h3:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background-color: var(--accent);
+    }
+    
+    .footer-col p {
+        margin-bottom: 20px;
+        color: #ccc;
+    }
+    
+    .footer-links {
+        list-style: none;
+    }
+    
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+        color: white;
+        padding-left: 5px;
+    }
+    
+    .social-icons {
+        display: flex;
+        margin-top: 20px;
+    }
+    
+    .social-icons a {
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+        background-color: var(--primary);
+        transform: translateY(-5px);
+    }
+    
+    .copyright {
+        text-align: center;
+        padding-top: 30px;
+        margin-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #999;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .showcase-container {
+            flex-direction: column;
+        }
+        
+        .showcase-content, .showcase-image {
+            width: 100%;
+        }
+        
+        .showcase-image {
+            margin-top: 40px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        
+        nav ul {
+            display: none;
+        }
+        
+        .product-categories {
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            margin-bottom: 10px;
+        }
+    }
+</style>
+</head> <body> <!-- Header --> <header> <div class="container header-container"> <a href="#" class="logo"> <i class="fas fa-gem"></i> Luxe<span>Scents</span> & Time </a>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">3</span>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Elegance in Every Detail</h1>
+            <p>Discover our exclusive collection of premium perfumes and luxury watches that define sophistication and style.</p>
+            <a href="#products" class="btn">Shop Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- Products Section -->
+<section class="products" id="products">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Collections</h2>
+            <p>Explore our handpicked selection of luxury items</p>
+        </div>
+        
+        <div class="product-categories">
+            <button class="category-btn active">All Products</button>
+            <button class="category-btn">Perfumes</button>
+            <button class="category-btn">Watches</button>
+            <button class="category-btn">New Arrivals</button>
+        </div>
+        
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1592945403407-9de659572daa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Premium Perfume">
+                </div>
+                <div class="product-info">
+                    <h3>Noir Essence</h3>
+                    <p>A captivating fragrance with notes of amber and sandalwood</p>
+                    <div class="product-price">
+                        <span class="price">$89.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Luxury Watch">
+                </div>
+                <div class="product-info">
+                    <h3>Royal Chrono</h3>
+                    <p>Automatic movement watch with sapphire crystal</p>
+                    <div class="product-price">
+                        <span class="price">$249.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1595425970377-2f8ded5e829a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Floral Perfume">
+                </div>
+                <div class="product-info">
+                    <h3>Blossom Harmony</h3>
+                    <p>Delicate floral scent with hints of jasmine and rose</p>
+                    <div class="product-price">
+                        <span class="price">$79.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Classic Watch">
+                </div>
+                <div class="product-info">
+                    <h3>Heritage Classic</h3>
+                    <p>Vintage inspired watch with genuine leather strap</p>
+                    <div class="product-price">
+                        <span class="price">$199.99</span>
+                        <button class="add-to-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3D Showcase -->
+<section class="showcase">
+    <div class="container showcase-container">
+        <div class="showcase-content">
+            <h2>Experience Products in 3D</h2>
+            <p>Our innovative 3D visualization allows you to explore every detail of our luxury products before making a purchase. Rotate, zoom, and examine from every angle to appreciate the craftsmanship.</p>
+            <p>This immersive experience brings our products to life, helping you make confident choices when selecting the perfect fragrance or timepiece.</p>
+            <a href="#" class="btn">Try 3D Experience</a>
+        </div>
+        <div class="showcase-image">
+            <div class="showcase-product">
+                <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="3D Product View">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="features" id="features">
+    <div class="container">
+        <div class="section-title">
+            <h2>Why Choose Us</h2>
+            <p>We provide exceptional quality and service</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature">
+                <i class="fas fa-truck"></i>
+                <h3>Free Shipping</h3>
+                <p>Free worldwide delivery on all orders over $100</p>
+            </div>
+            
+            <div class="feature">
+                <i class="fas fa-check-circle"></i>
+                <h3>Authentic Products</h3>
+                <p>100% genuine products with warranty</p>
+            </div>
+            
+            <div class="feature">
+                <i class="fas fa-lock"></i>
+                <h3>Secure Payment</h3>
+                <p>All transactions are secure and encrypted</p>
+            </div>
+            
+            <div class="feature">
+                <i class="fas fa-headset"></i>
+                <h3>24/7 Support</h3>
+                <p>Dedicated customer support team</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="contact">
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>LuxeScents & Time</h3>
+                <p>Providing luxury fragrances and timepieces for the discerning customer who values quality and elegance.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Paris, France</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@luxescents.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 LuxeScents & Time. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+const products = [
+    {
+        name: "Noir Essence",
+        description: "A captivating fragrance with notes of amber and sandalwood",
+        price: 89.99,
+        image: "https://images.unsplash.com/photo-1592945403407-9de659572daa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        name: "Royal Chrono",
+        description: "Automatic movement watch with sapphire crystal",
+        price: 249.99,
+        image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        name: "Blossom Harmony",
+        description: "Delicate floral scent with hints of jasmine and rose",
+        price: 79.99,
+        image: "https://images.unsplash.com/photo-1595425970377-2f8ded5e829a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        name: "Heritage Classic",
+        description: "Vintage inspired watch with genuine leather strap",
+        price: 199.99,
+        image: "https://images.unsplash.com/photo-1539874754764-5a96559165b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+    }
+];
+
+// Simple cart functionality
+document.querySelectorAll('.add-to-cart').forEach((button, index) => {
+    button.addEventListener('click', function() {
+        // Update cart count visually
+        const count = document.querySelector('.cart-count');
+        count.textContent = parseInt(count.textContent) + 1;
+
+        // Add product to localStorage cart
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const productToAdd = products[index];
+        // Check if product already in cart
+        const existingIndex = cart.findIndex(item => item.name === productToAdd.name);
+        if (existingIndex >= 0) {
+            cart[existingIndex].quantity++;
+        } else {
+            cart.push({...productToAdd, quantity: 1});
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Animation
+        this.style.backgroundColor = 'var(--success)';
+        setTimeout(() => {
+            this.style.backgroundColor = 'var(--accent)';
+        }, 500);
+    });
+});
+
+// Redirect to product details page when a product image is clicked
+document.querySelectorAll('.product-image img').forEach(image => {
+    image.addEventListener('click', function() {
+        const productName = this.closest('.product-card').querySelector('h3').textContent;
+        const productDetailsURL = `product.html?name=${encodeURIComponent(productName)}`;
+        window.location.href = productDetailsURL;
+    });
+});
+
+// Redirect to cart page when the cart icon is clicked
+document.querySelector('.cart-icon').addEventListener('click', function() {
+    window.location.href = 'cart.html';
+});
+
+// Category buttons
+document.querySelectorAll('.category-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        document.querySelector('.category-btn.active').classList.remove('active');
+        this.classList.add('active');
+    });
+});
+</script>
+</html>
